@@ -1,0 +1,1127 @@
+﻿/*Accessibility Concerns
+    Reduced Motion
+*/
+
+/*User defined*/
+
+:root {
+    --main-bg-color: #eee5ce;
+    --content-bg-color: hsla(39, 100%, 60%, .8);
+    /*--msg-bg-color: hsla(0, 0%, 87%, 0.85);*/
+    --msg-bg-color: hsla(68, 41%, 83%, .85);
+    --bookmania-font: Bookmania, serif;
+    /* temp setting title font to bookmania cuz I forgot to get the typekit link for mrs-eaves-small-caps, sans-serif;*/
+    --mrs-eaves-font: mrs-eaves-roman-small-caps, sans-serif;
+    /*  title color formerly #59170d */
+    --title-color: #58180D;
+    --scala-font: ff-scala-sans-pro, sans-serif;
+    --divider-length: 17ch;
+    --divider-color: rgba(140, 42, 42, 1);
+    --divider-mask: linear-gradient(to right, black 30%, rgba(0, 0, 0, 0.72) 80%, transparent);
+    --alt-divider-color: #9C2B1B;
+    --parchment-img: url(/images/parchment.jpg);
+    --scroll-bg-img: url(/images/scroll-bg.jpg);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    display: flex;
+    flex-direction: column;
+    font-size: 62.5%;
+    min-height: 100%;
+}
+
+body {
+    background-color: var(--main-bg-color);
+    background-image: var(--scroll-bg-img);
+    color: black;
+    display: flex;
+    flex: auto;
+    flex-direction: column;
+    font-family: var(--bookmania-font);
+    font-size: 1.6rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: left;
+    text-size-adjust: 100%;
+}
+
+#app {
+    display: flex;
+    flex: auto;
+    flex-direction: column;
+}
+
+/*this being a column might have screwed the growing up and down*/
+main {
+    display: flex;
+    flex: auto;
+    flex-flow: column;
+    margin: .875em;
+    /*might regret below*/
+    /*    width: 100%;
+*/
+}
+
+header, footer {
+    font-family: var(--mrs-eaves-font);
+    font-style: normal;
+    font-weight: 400;
+    width: 100%;
+}
+
+header {
+    font-size: 1.6rem;
+}
+
+footer {
+    color: #59170d;
+    font-size: 1.2rem;
+    padding: 1.16667em;
+    text-align: center;
+    white-space: nowrap;
+}
+
+/*.footer {
+    font-size: 1.2rem;
+    white-space: nowrap;
+    color: #59170d;
+}
+*/
+
+.navBar {
+    align-items: center;
+    background-image: var(--scroll-bg-img);
+    border-bottom: 1px solid #dee2e6;
+    box-shadow: 0 .5rem .75rem rgba(0, 0, 0, .4);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    padding-bottom: .5rem;
+    padding-top: .5rem;
+    position: relative;
+}
+
+.navBar_navContainer {
+    align-items: center;
+    display: flex;
+    flex-wrap: inherit;
+    justify-content: space-between;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 7.5px;
+    padding-right: 7.5px;
+    width: 100%;
+}
+
+.navContainer_navHeader {
+    color: rgba(0, 0, 0, .9);
+    font-family: var(--mrs-eaves-font);
+    /*    font-size: min(max(.75rem, 0.3062130177514793rem + 4.733727810650888vw), 1.25rem);
+    font-size: clamp(0.75rem, 0.3062130177514793rem + 4.733727810650888vw, 1.25rem);
+    line-height: min(max(1.5rem, 0.25rem + 2ex), 2rem);
+    line-height: clamp(1.5rem, 0.25rem + 2ex, 2rem);*/
+    font-size: 1.52rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.5;
+    margin-left: .8rem;
+    margin-right: 1rem;
+    padding-bottom: .3125rem;
+    padding-top: .3125rem;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+    .navContainer_navHeader:focus, .navContainer_navHeader:hover {
+        color: rgba(0, 0, 0, .9);
+    }
+
+.navContainer_navToggle {
+    -webkit-appearance: button;
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-bottom-color: transparent;
+    border-color: rgba(0, 0, 0, .1);
+    border-left-color: transparent;
+    border-radius: .25rem;
+    border-right-color: transparent;
+    border-top-color: transparent;
+    /*    padding: 0;
+border-style: none;*/
+    color: rgba(0, 0, 0, .55);
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1.25rem;
+    line-height: 1;
+    margin: 0;
+    padding: .25rem .75rem;
+    text-transform: none;
+    transition: box-shadow .15s ease-in-out;
+}
+
+    .navContainer_navToggle:not(:disabled) {
+        cursor: pointer;
+    }
+
+    .navContainer_navToggle:hover {
+        text-decoration: none;
+    }
+
+    .navContainer_navToggle:focus {
+        box-shadow: 0 0 0 .25rem;
+        outline: 0;
+        text-decoration: none;
+    }
+
+        .navContainer_navToggle:focus:not(:focus-visible) {
+            outline: 0;
+        }
+
+.navToggle_toggleIcon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 0, 0, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    display: inline-block;
+    height: 1.5em;
+    vertical-align: middle;
+    width: 1.5em;
+}
+
+.navContainer_navLinks {
+    align-items: center;
+    flex-basis: 100%;
+    flex-grow: 1;
+    justify-content: space-between;
+}
+
+.navLinks_nav {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    list-style: none;
+    margin-bottom: 0;
+    margin-top: 0;
+    padding-left: 0;
+}
+
+.nav_navItem {
+    list-style: none;
+}
+
+.navItem_navLink {
+    /*color here twice not be needed here*/
+    /*color: rgba(33, 37, 41, 1);*/
+
+    color: #0d6efd;
+    display: block;
+    padding: .5rem 0;
+    text-decoration: none;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out;
+}
+
+    .navItem_navLink:focus, .navItem_navLink:hover {
+        color: #0d6efd;
+    }
+
+.navContainer_navCollapse {
+    display: block;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .4s cubic-bezier(0, 1, 0, 1);
+    /*transition: max-height .5s cubic-bezier(0, 1, 0, 1);*/
+}
+
+    .navContainer_navCollapse.show {
+        max-height: 99em;
+        transition: max-height 1.8s ease-in-out;
+        /*transition: max-height 2s ease-in-out;*/
+    }
+
+    .navContainer_navCollapse:not(.show) {
+        /*  display: none;
+    display: block;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .35s ease;*/
+        display: initial;
+    }
+
+.content {
+    background: var(--parchment-img), var(--content-bg-color);
+    background-blend-mode: hard-light;
+    background-position: 0 130px;
+    background-repeat: repeat;
+    border-radius: .25em;
+    /*box-shadow: 0 0 20px #000;*/
+    box-shadow: rgba(60, 64, 67, 0.3) 0 1px 2px 0, rgba(60, 64, 67, 0.15) 0 2px 6px 2px;
+    display: flex;
+    flex: auto;
+    flex-direction: column;
+    height: 100%;
+    /*justify-content: space-evenly;*/
+    justify-content: space-between;
+    padding: .5em;
+    width: 100%;
+}
+
+    .content > div {
+        margin: .8rem;
+    }
+
+.content_header, .content_footer {
+    color: var(--title-color);
+    font-family: var(--mrs-eaves-font);
+    font-style: normal;
+    font-weight: 400;
+    text-align: center;
+}
+
+.content_header {
+    font-size: 3.2rem;
+    line-height: 1.3;
+}
+
+.content_footer {
+    font-size: 2rem;
+    line-height: 1.3;
+}
+
+.content_body {
+    text-align: left;
+}
+
+.content_games {
+    column-gap: .5em;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+}
+
+    .content_games > img {
+        flex: auto;
+        min-width: 0%;
+    }
+
+.userInfo {
+    position: relative;
+    text-align: left;
+}
+
+    .userInfo::after {
+        border: none;
+        border-bottom: .08em solid transparent;
+        border-left: var(--divider-length) solid var(--divider-color);
+        border-top: .08em solid transparent;
+        clip-path: inset(0 1.2em 0 0);
+        content: "";
+        display: block;
+        margin-bottom: 1em;
+        margin-top: .0625em;
+        mask-image: var(--divider-mask);
+    }
+
+.userInfo_userName {
+    font-size: 3.2rem;
+    font-weight: 400;
+    line-height: 1.3;
+    margin: 0;
+    width: 65%;
+}
+
+.userInfo_userType {
+    color: black;
+    font-family: var(--scala-font);
+    font-size: 1.6rem;
+    font-style: italic;
+    font-weight: 400;
+    width: 65%;
+}
+
+    .userInfo_userType > p {
+        margin: 0;
+    }
+
+.userInfo_profileImage {
+    border: none;
+    height: 7ch;
+    margin: 0;
+    margin-right: -.4em;
+    margin-top: .4em;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 7ch;
+    z-index: 1;
+}
+
+    .userInfo_profileImage img {
+        border: none;
+        height: 100%;
+        object-fit: contain;
+        width: 100%;
+    }
+
+.message {
+    background: var(--msg-bg-color);
+    border-image: url(/images/phb_table_border.png) 13;
+    border-image-outset: 7px 0;
+    border-style: solid;
+    border-width: 9px;
+    box-shadow: 1px 4px 14px #888;
+    font-size: 1.6rem;
+    margin: 0;
+    /*border-radius: .125rem;*/
+    /*box-shadow: 0 0 20px #000;*/
+    padding: 1.2rem;
+    quotes: none;
+    /*margin: .75rem;*/
+}
+
+.enterPrompt {
+    font-size: 2.5rem;
+    margin: 0;
+}
+
+/*First used in forms*/
+
+.baseblock {
+    background: var(--parchment-img), hsl(39deg 100% 60% / 80%);
+    background-blend-mode: hard-light;
+    background-position: 0 130px;
+    background-repeat: repeat;
+    border-radius: .25rem;
+    box-shadow: 0 0 20px #000;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-evenly;
+    /*max-width: 540px;*/
+    margin: 0 .75rem;
+    width: 100%;
+}
+
+/*Exclusively for forms*/
+
+input, select {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    margin: 0;
+}
+
+label {
+    display: inline-block
+}
+
+select option {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    text-align: center;
+}
+
+.formblock {
+    /*check on this*/
+    padding: min(max(0, -1.1094674556213018rem + 11.834319526627219vw), 1.25rem);
+    padding: clamp(0, -1.1094674556213018rem + 11.834319526627219vw, 1.25rem);
+}
+
+.formBlock_headerBlock {
+    flex: none;
+    margin: 0 auto;
+    max-width: 100%;
+    width: 100%;
+}
+
+.headerBlock_Header {
+    color: rgb(89 23 13);
+    font-family: mrs-eaves-roman-small-caps, sans-serif;
+    font-size: min(max(1.1rem, 0.30118343195266295rem + 8.520710059171597vw), 2rem);
+    font-size: clamp(1.1rem, 0.30118343195266295rem + 8.520710059171597vw, 2rem);
+    font-style: normal;
+    font-weight: 400;
+    line-height: min(max(1.5rem, 0.25rem + 2ex), 2rem);
+    line-height: clamp(1.5rem, 0.25rem + 2ex, 2rem);
+    margin: 2rem 0rem;
+    text-align: center;
+}
+
+.formBlock_formRow {
+    display: flex;
+    flex-flow: row wrap;
+    margin: 0 auto;
+    width: 100%;
+}
+
+    .formBlock_formRow > * {
+        margin-top: 0;
+        max-width: 100%;
+        padding: 0 calc(1.5rem * .5);
+    }
+
+.formRow_entryBlock {
+    flex: none;
+    padding-bottom: 1.5rem;
+    width: 100%;
+}
+
+.entryBlock_formEntry {
+    background: white;
+    border-radius: .3rem;
+    font-family: var(--bookmania-font);
+    font-style: normal;
+    font-weight: 400;
+    position: relative;
+}
+
+    .entryBlock_formEntry .formEntry_formControl {
+        background: transparent;
+        border: 0;
+        padding: .33rem .75rem;
+        transition: all .2s linear;
+    }
+
+        .entryBlock_formEntry .formEntry_formControl:focus {
+            background: #eee5ce;
+            box-shadow: none;
+        }
+
+            .entryBlock_formEntry .formEntry_formControl:focus ~ .formEntry_formLabel {
+                color: #1266f1;
+            }
+
+            .entryBlock_formEntry .formEntry_formControl:focus ~ .formEntry_formLabel,
+            .entryBlock_formEntry .formEntry_formControl.active ~ .formEntry_formLabel,
+            .formEntry_formControl:not(:placeholder-shown) ~ .formEntry_formLabel {
+                max-width: 100%;
+                /*transform: translateY(-1rem) translateY(.1rem) scale(.8)*/
+                transform: translateY(-1rem) translateY(.05rem) scale(.8);
+                width: fit-content;
+            }
+
+            .entryBlock_formEntry .formEntry_formControl:focus ~ .formEntry_formNotch .formNotch_leadingNotch {
+                border-bottom: .125rem solid #1266f1;
+                border-left: .125rem solid #1266f1;
+                border-top: .125rem solid #1266f1;
+            }
+
+            .entryBlock_formEntry .formEntry_formControl.active ~ .formEntry_formNotch .formNotch_leadingNotch,
+            .entryBlock_formEntry .formEntry_formControl:focus ~ .formEntry_formNotch .formNotch_leadingNotch,
+            .formEntry_formControl:not(:placeholder-shown) ~ .formEntry_formNotch .formNotch_leadingNotch {
+                border-right: none;
+                transition: all .2s linear
+            }
+
+            .entryBlock_formEntry .formEntry_formControl:focus ~ .formEntry_formNotch .formNotch_middleNotch {
+                border-bottom: .125rem solid;
+                border-color: #1266f1
+            }
+
+            .entryBlock_formEntry .formEntry_formControl:focus ~ .formEntry_formNotch .formNotch_middleNotch,
+            .entryBlock_formEntry .formEntry_formControl.active ~ .formEntry_formNotch .formNotch_middleNotch,
+            .formEntry_formControl:not(:placeholder-shown) ~ .formEntry_formNotch .formNotch_middleNotch {
+                border-left: none;
+                border-right: none;
+                border-top: none;
+                transition: all .2s linear
+            }
+
+            .entryBlock_formEntry .formEntry_formControl:focus ~ .formEntry_formNotch .formNotch_trailingNotch {
+                border-bottom: .125rem solid #1266f1;
+                border-right: .125rem solid #1266f1;
+                border-top: .125rem solid #1266f1;
+            }
+
+            .entryBlock_formEntry .formEntry_formControl:focus ~ .formEntry_formNotch .formNotch_trailingNotch,
+            .entryBlock_formEntry .formEntry_formControl.active ~ .formEntry_formNotch .formNotch_trailingNotch,
+            .formEntry_formControl:not(:placeholder-shown) ~ .formEntry_formNotch .formNotch_trailingNotch {
+                border-left: none;
+                transition: all .2s linear
+            }
+
+        .entryBlock_formEntry .formEntry_formControl ~ .formEntry_formLabel {
+            bottom: 0;
+            color: rgba(0, 0, 0, .6);
+            left: 0;
+            line-height: 2.2;
+            margin-bottom: 0;
+            overflow: hidden;
+            padding: .33rem .75rem;
+            pointer-events: none;
+            position: absolute;
+            right: 0;
+            text-overflow: ellipsis;
+            top: 0;
+            transform-origin: 0 0;
+            transition: all .2s ease-out;
+            white-space: nowrap;
+        }
+
+        .entryBlock_formEntry .formEntry_formControl:not(.placeholder-active)::placeholder,
+        .entryBlock_formEntry .formEntry_formControl:not(.placeholder-active)::-moz-placeholder {
+            opacity: 0;
+        }
+
+        .entryBlock_formEntry .formEntry_formControl ~ .formEntry_formNotch {
+            display: flex;
+            height: 100%;
+            left: 0;
+            max-width: 100%;
+            pointer-events: none;
+            position: absolute;
+            text-align: left;
+            top: 0;
+            width: 100%;
+        }
+
+            .entryBlock_formEntry .formEntry_formControl ~ .formEntry_formNotch div {
+                background: transparent;
+                border: 0.0625rem solid #bdbdbd;
+                box-sizing: border-box;
+                pointer-events: none;
+            }
+
+            .entryBlock_formEntry .formEntry_formControl ~ .formEntry_formNotch .formNotch_leadingNotch {
+                border-radius: .25rem 0 0 .25rem;
+                border-right: none;
+                height: 100%;
+            }
+
+            .entryBlock_formEntry .formEntry_formControl ~ .formEntry_formNotch .formNotch_middleNotch {
+                border-left: none;
+                border-right: none;
+                flex: 0 0 auto;
+                height: 100%;
+                max-width: calc(100% - 1rem);
+            }
+
+            .entryBlock_formEntry .formEntry_formControl ~ .formEntry_formNotch .formNotch_trailingNotch {
+                border-left: none;
+                border-radius: 0 .25rem .25rem 0;
+                flex-grow: 1;
+                height: 100%;
+            }
+
+.formEntry_formControl {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    border: 0.0625rem solid #bdbdbd;
+    border-radius: .25rem;
+    color: #4f4f4f;
+    display: block;
+    font-size: 1rem;
+    height: 2.5rem;
+    line-height: 1.6;
+}
+
+    .formEntry_formControl:focus {
+        color: #4f4f4f;
+        outline: none;
+    }
+
+    .formEntry_formControl.formEntry_selectBlock {
+        border: none;
+        padding: 0;
+    }
+
+.formNotch_leadingNotch {
+    width: 0.563rem;
+}
+
+.formNotch_userNameNotch {
+    width: 3.813rem;
+}
+
+.formNotch_emailNotch {
+    width: 2.25rem;
+}
+
+.formNotch_roleNotch {
+    width: 1.7rem;
+}
+
+.formNotch_gameNotch {
+    width: 2.25rem;
+}
+
+.formEntry_switchBlock {
+    /*align-content: center;*/
+    /*align-items: center;*/
+    background: transparent;
+    border: 0;
+    border-radius: 1.25rem;
+    /*border-radius: 1.1115rem;*/
+    color: #616161;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+}
+
+.formEntry_switch {
+    background: linear-gradient(to bottom, #eeeeee, #DADBDD 1.563rem);
+    /*height: 64.7%;*/
+    /*height: 77.51%;
+    width: calc(100% - 0.501rem);*/
+    /*width: calc(100% - 0.786rem);*/
+    /*width: calc(100% - 0.0625rem);*/
+    /*width:100%;*/
+    /*background: linear-gradient(to bottom, #eeeeee, #ffffff 1.563rem);
+    background-image: linear-gradient( rgb(238, 238, 238), rgb(255, 255, 255) 1.563rem );
+    background-image: -webkit-linear-gradient(top, #eeeeee, #ffffff 1.563rem);*/
+    /*background-image: -webkit-linear-gradient(top, #eeeeee, #fafafa 1.563rem);
+    background-image: linear-gradient( #fafafa, rgb(255, 255, 255) 1.563rem );
+    background: linear-gradient(to bottom, #eeeeee, #fafafa 1.563rem);*/
+    background-image: -webkit-linear-gradient(top, #eeeeee, #DADBDD 1.563rem);
+    background-image: linear-gradient(#eeeeee, #DADBDD 1.563rem);
+    border-radius: 1.125rem;
+    box-shadow: inset 0 -0.0625rem 0.0625rem rgba(0, 0, 0, 0.05), inset 0 0.0625rem 0.0625rem rgba(0, 0, 0, 0.05);
+    box-sizing: content-box;
+    cursor: pointer;
+    /*    justify-content: center;
+    align-content: center;
+    align-items: center;*/
+    /*font-size: .65rem;
+    line-height: 2.5rem;*/
+    /*    font-size: min(max(.65rem, 0.54rem + 0.5499999999999999vw), 1.2rem);
+    font-size: clamp(0.65rem, 0.54rem + 0.5499999999999999vw, 1.2rem);
+    line-height: min(max(1.125rem, 0.25rem + 7ex), 2.1875rem);
+    line-height: clamp(1.125rem, 0.25rem + 7ex, 2.1875rem);*/
+    font-size: 1rem;
+    height: 80%;
+    line-height: 2.3;
+    /*padding: 0;*/
+    /*padding: 0.33rem;*/
+    padding: 0.1875rem;
+    position: relative;
+    top: .0625rem;
+    width: calc(100% - 0.5rem);
+}
+
+.switch_switchInput {
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+    .switch_switchInput:checked ~ .switch_switchState {
+        /*background: #e1b42b;*/
+        background: #8D303C;
+        box-shadow: inset 0 0.0625rem 0.125rem rgba(0, 0, 0, 0.15), inset 0 0 0.188rem rgba(0, 0, 0, 0.2);
+    }
+
+        .switch_switchInput:checked ~ .switch_switchState .switchState_playerSwitchOption {
+            /* figure out how to remove important */
+            display: none !important;
+        }
+
+        .switch_switchInput:checked ~ .switch_switchState .switchState_switchOption.switchState_playerSwitchOption {
+            display: none;
+        }
+
+        .switch_switchInput:checked ~ .switch_switchState .switchState_dmSwitchOption {
+            display: inherit;
+        }
+
+    .switch_switchInput:checked ~ .switch_handleBlock .handleBlock_switchToggle {
+        box-shadow: -0.0625rem 0.0625rem 0.313rem rgba(0, 0, 0, 0.2);
+        left: auto;
+        right: 0.125rem;
+    }
+
+    .switch_switchInput ~ .formEntry_formNotch {
+        display: flex;
+        /*max-width: 100%;*/
+        height: 2.5rem;
+        left: -.0625rem;
+        max-width: calc(100% + 0.125rem);
+        pointer-events: none;
+        position: absolute;
+        text-align: left;
+        top: -.0625rem;
+        /*width: 100%;*/
+        width: calc(100% + 0.125rem);
+    }
+
+        .switch_switchInput ~ .formEntry_formNotch div {
+            background: transparent;
+            border: 0.0625rem solid #bdbdbd;
+            border-right-color: rgb(189, 189, 189);
+            border-right-style: solid;
+            border-right-width: 0.0625rem;
+            box-sizing: border-box;
+            pointer-events: none;
+        }
+
+        .switch_switchInput ~ .formEntry_formNotch .formNotch_leadingNotch {
+            /*margin: 0.3rem;*/
+            border-bottom-left-radius: 1.25rem;
+            border-right: none;
+            border-top-left-radius: 1.25rem;
+            transition: border-color 0.2s linear;
+            width: 1.3rem;
+        }
+
+        .switch_switchInput ~ .formEntry_formNotch .formNotch_middleNotch {
+            border-left: none;
+            border-right: none;
+            border-top: none;
+            flex: 0 0 auto;
+            height: 100%;
+            max-width: calc(100% - 1rem);
+            transition: border-color 0.2s linear;
+            /*margin: -0.3rem;*/
+        }
+
+        .switch_switchInput ~ .formEntry_formNotch .formNotch_trailingNotch {
+            /*margin: 0.3rem;*/
+            border-bottom-right-radius: 1.25rem;
+            border-left: none;
+            border-top-right-radius: 1.25rem;
+            flex-grow: 1;
+            transition: border-color 0.2s linear;
+        }
+
+    .switch_switchInput:focus ~ .formEntry_formNotch div {
+        border-color: #1266f1;
+        border-width: .125rem;
+    }
+
+.switch_switchState {
+    /*background: #eceeef;*/
+    background: #6BB877;
+    border-radius: inherit;
+    box-shadow: inset 0 0.0625rem 0.125rem rgba(0, 0, 0, 0.12), inset 0 0 0.125rem rgba(0, 0, 0, 0.15);
+    box-sizing: content-box;
+    /*display:inline-block;*/
+    display: inline-flex;
+    /*    align-content:center;
+    align-items:center;*/
+    /*display: flex;*/
+    height: 100%;
+    justify-content: center;
+    position: relative;
+    text-transform: uppercase;
+    width: 100%;
+}
+
+.switchState_switchOption {
+    -moz-transition: inherit;
+    -o-transition: inherit;
+    /*      transform: translateX(.189rem);*/
+    /*        inset:0;
+        display:flex;
+        align-items:center;*/
+    /*top: 50%;
+        margin-top: -0.5rem;*/
+    -webkit-transition: inherit;
+    box-sizing: content-box;
+    height: 100%;
+    inset: 0;
+    /*   width: calc( 100% - 1.439rem);*/
+    /*text-align: center;*/
+    /*        display:flex;*/
+    justify-content: center;
+    position: absolute;
+    transition: inherit;
+}
+
+/*consider adding the block to the name*/
+
+.switchState_playerSwitchOption {
+    color: #0A0A0A;
+    /*get rid of the important*/
+    display: inherit !important;
+    margin-left: 1.7875rem;
+    /*margin-right: 0.339rem;*/
+    margin-right: 0.2rem;
+    text-shadow: 0.02rem 0.04rem rgba(136, 136, 136, 0.5);
+}
+
+.switchState_switchOption.switchState_playerSwitchOption {
+    display: inherit;
+}
+
+.switchState_dmSwitchOption {
+    color: #fffafa;
+    display: none;
+    margin-left: 1.25rem;
+    margin-right: 1.7875rem;
+    text-shadow: 0 0.0625rem rgba(0, 0, 0, 0.2);
+}
+
+.switch_handleBlock {
+    /*    justify-content: center;
+    align-content: center;*/
+    align-items: center;
+    display: flex;
+    /*top: 0;
+    height:100%;
+    width:100%;*/
+    inset: 0.1875rem;
+    position: absolute;
+}
+
+.handleBlock_switchToggle {
+    -moz-transition: All 250ms ease;
+    -o-transition: All 250ms ease;
+    /*    -webkit-transition: All 0.3s ease;
+    -moz-transition: All 0.3s ease;
+    -o-transition: All 0.3s ease;*/
+    /*transition: All 0.3s ease;*/
+    -webkit-transition: All 250ms ease;
+    background: linear-gradient(to bottom, #ffffff 40%, #f0f0f0);
+    background-image: linear-gradient(rgb(255, 255, 255) 40%, rgb(240, 240, 240));
+    background-image: -webkit-linear-gradient(top, #ffffff 40%, #f0f0f0);
+    border-radius: 100%;
+    box-shadow: 0.0625rem 0.0625rem 0.313rem rgba(0, 0, 0, 0.2);
+    height: 80%;
+    left: 0.125rem;
+    position: absolute;
+    transition: All 250ms ease;
+    width: 1.6rem;
+}
+
+    .handleBlock_switchToggle::before {
+        background: linear-gradient(to bottom, #eeeeee, #ffffff);
+        background-image: linear-gradient(rgb(238, 238, 238), rgb(255, 255, 255));
+        background-image: -webkit-linear-gradient(top, #eeeeee, #ffffff);
+        border-radius: 0.375rem;
+        box-shadow: inset 0 0.0625rem rgba(0, 0, 0, 0.02);
+        content: "";
+        /*margin: -0.33rem 0 0 -0.33rem;*/
+        /*height: 50.1%;
+        width: 0.5745rem;*/
+        height: 50%;
+        left: 50%;
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 0.8rem;
+    }
+
+.formEntry_switchLabel {
+    bottom: 0;
+    color: #1266f1;
+    height: fit-content;
+    left: 0;
+    margin: 0;
+    max-height: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+    /*transform: translateX(1.3rem) translateY(-1rem) translateY(0.36rem) scale(0.8);*/
+    transform: translateX(1.3rem) translateY(-1rem) translateY(0.28rem) scale(0.8);
+    transform-origin: 0 0;
+    /*might need to make this line up with the handle*/
+    transition: all 0.2s ease-out;
+    /*padding: 0.33rem;*/
+    white-space: nowrap;
+    /*transform: translateX(1.4rem) translateY(-1rem) translateY(0.32rem) scale(0.8)*/
+    width: fit-content;
+}
+
+.formEntry_selectBlock {
+    background: #eee5ce;
+    color: #616161;
+    font-family: bookmania, serif;
+    font-style: normal;
+    font-weight: 400;
+}
+
+.formEntry_selectControl {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background: #eee5ce;
+    border: none;
+    border-radius: .3rem;
+    /*height: 2.223rem;*/
+    height: 100%;
+    line-height: 2.3;
+    outline: 0;
+    padding: 0.33rem 0.75rem;
+    text-align: center;
+    text-transform: none;
+    width: 100%;
+    word-wrap: normal;
+}
+
+    .formEntry_selectControl:focus ~ .formEntry_formNotch div {
+        border-color: #1266f1;
+        border-width: .125rem;
+    }
+
+.selectControl_selectOptions {
+    background: #eee5ce;
+}
+
+.formEntry_selectLabel {
+    bottom: 0;
+    color: #1266f1;
+    left: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    overflow: hidden;
+    padding: 0.33rem 0.75rem;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform: translateY(-1rem) translateY(0.1rem) scale(0.8);
+    transform-origin: 0 0;
+    transition: all 0.2s ease-out;
+    white-space: nowrap;
+}
+
+    .formEntry_selectLabel ~ .formEntry_formNotch {
+        display: flex;
+        height: 100%;
+        left: 0;
+        max-width: 100%;
+        pointer-events: none;
+        position: absolute;
+        text-align: left;
+        top: 0;
+        width: 100%;
+    }
+
+        .formEntry_selectLabel ~ .formEntry_formNotch div {
+            background: transparent;
+            border: 0.0625rem solid #bdbdbd;
+            border-right-color: rgb(189, 189, 189);
+            border-right-style: solid;
+            border-right-width: 0.0625rem;
+            box-sizing: border-box;
+            pointer-events: none;
+        }
+
+        .formEntry_selectLabel ~ .formEntry_formNotch .formNotch_leadingNotch {
+            border-radius: 0.25rem 0 0 0.25rem;
+            border-right: none;
+            border-right: none;
+            height: 100%;
+            transition: all 0.2s linear;
+        }
+
+        .formEntry_selectLabel ~ .formEntry_formNotch .formNotch_middleNotch {
+            border-left: none;
+            border-right: none;
+            border-top: none;
+            flex: 0 0 auto;
+            height: 100%;
+            max-width: calc(100% - 1rem);
+            transition: all 0.2s linear;
+        }
+
+        .formEntry_selectLabel ~ .formEntry_formNotch .formNotch_trailingNotch {
+            border-left: none;
+            border-radius: 0 0.25rem 0.25rem 0;
+            flex-grow: 1;
+            height: 100%;
+            transition: all 0.2s linear;
+        }
+
+.formRow_buttonEntry {
+    margin: auto;
+    padding: 1rem;
+}
+
+.buttonEntry_buttonBlock {
+    align-content: center;
+    align-items: center;
+    display: flex;
+    flex-flow: row wrap;
+    flex-grow: 1;
+    justify-content: center;
+    margin: 0.625rem;
+}
+
+.buttonBlock_submitButton {
+    font-family: var(--mrs-eaves-font);
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: .0625rem;
+}
+
+.failed-login-btn {
+    align-items: center;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    margin-top: 1.5rem;
+    width: 100%;
+}
+
+/*Presets*/
+
+h1:focus {
+    outline: none;
+}
+
+a, .btn-link {
+    color: #0071c1;
+}
+
+.btn-primary {
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+    color: #fff;
+}
+
+.valid.modified:not([type=checkbox]) {
+    outline: 1px solid #26b050;
+}
+
+.invalid {
+    outline: 1px solid red;
+}
+
+.validation-message {
+    color: red;
+}
+
+#blazor-error-ui {
+    background: lightyellow;
+    bottom: 0;
+    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+    display: none;
+    left: 0;
+    padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+    #blazor-error-ui .dismiss {
+        cursor: pointer;
+        position: absolute;
+        right: 0.75rem;
+        top: 0.5rem;
+    }
+
+.blazor-error-boundary {
+    background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTYiIGhlaWdodD0iNDkiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIG92ZXJmbG93PSJoaWRkZW4iPjxkZWZzPjxjbGlwUGF0aCBpZD0iY2xpcDAiPjxyZWN0IHg9IjIzNSIgeT0iNTEiIHdpZHRoPSI1NiIgaGVpZ2h0PSI0OSIvPjwvY2xpcFBhdGg+PC9kZWZzPjxnIGNsaXAtcGF0aD0idXJsKCNjbGlwMCkiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0yMzUgLTUxKSI+PHBhdGggZD0iTTI2My41MDYgNTFDMjY0LjcxNyA1MSAyNjUuODEzIDUxLjQ4MzcgMjY2LjYwNiA1Mi4yNjU4TDI2Ny4wNTIgNTIuNzk4NyAyNjcuNTM5IDUzLjYyODMgMjkwLjE4NSA5Mi4xODMxIDI5MC41NDUgOTIuNzk1IDI5MC42NTYgOTIuOTk2QzI5MC44NzcgOTMuNTEzIDI5MSA5NC4wODE1IDI5MSA5NC42NzgyIDI5MSA5Ny4wNjUxIDI4OS4wMzggOTkgMjg2LjYxNyA5OUwyNDAuMzgzIDk5QzIzNy45NjMgOTkgMjM2IDk3LjA2NTEgMjM2IDk0LjY3ODIgMjM2IDk0LjM3OTkgMjM2LjAzMSA5NC4wODg2IDIzNi4wODkgOTMuODA3MkwyMzYuMzM4IDkzLjAxNjIgMjM2Ljg1OCA5Mi4xMzE0IDI1OS40NzMgNTMuNjI5NCAyNTkuOTYxIDUyLjc5ODUgMjYwLjQwNyA1Mi4yNjU4QzI2MS4yIDUxLjQ4MzcgMjYyLjI5NiA1MSAyNjMuNTA2IDUxWk0yNjMuNTg2IDY2LjAxODNDMjYwLjczNyA2Ni4wMTgzIDI1OS4zMTMgNjcuMTI0NSAyNTkuMzEzIDY5LjMzNyAyNTkuMzEzIDY5LjYxMDIgMjU5LjMzMiA2OS44NjA4IDI1OS4zNzEgNzAuMDg4N0wyNjEuNzk1IDg0LjAxNjEgMjY1LjM4IDg0LjAxNjEgMjY3LjgyMSA2OS43NDc1QzI2Ny44NiA2OS43MzA5IDI2Ny44NzkgNjkuNTg3NyAyNjcuODc5IDY5LjMxNzkgMjY3Ljg3OSA2Ny4xMTgyIDI2Ni40NDggNjYuMDE4MyAyNjMuNTg2IDY2LjAxODNaTTI2My41NzYgODYuMDU0N0MyNjEuMDQ5IDg2LjA1NDcgMjU5Ljc4NiA4Ny4zMDA1IDI1OS43ODYgODkuNzkyMSAyNTkuNzg2IDkyLjI4MzcgMjYxLjA0OSA5My41Mjk1IDI2My41NzYgOTMuNTI5NSAyNjYuMTE2IDkzLjUyOTUgMjY3LjM4NyA5Mi4yODM3IDI2Ny4zODcgODkuNzkyMSAyNjcuMzg3IDg3LjMwMDUgMjY2LjExNiA4Ni4wNTQ3IDI2My41NzYgODYuMDU0N1oiIGZpbGw9IiNGRkU1MDAiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPjwvZz48L3N2Zz4=) no-repeat 1rem/1.8rem, #b32121;
+    color: white;
+    padding: 1rem 1rem 1rem 3.7rem;
+}
+
+    .blazor-error-boundary::after {
+        content: "An error has occurred."
+    }

@@ -1,0 +1,12 @@
+D:\Dev\projects\foundrySite\SkullDugDungeon\SkullDugDungeon.Shared\obj\Debug\net6.0\SkullDugDungeon.Shared.csproj.AssemblyReference.cache
+D:\Dev\projects\foundrySite\SkullDugDungeon\SkullDugDungeon.Shared\obj\Debug\net6.0\SkullDugDungeon.Shared.GeneratedMSBuildEditorConfig.editorconfig
+D:\Dev\projects\foundrySite\SkullDugDungeon\SkullDugDungeon.Shared\obj\Debug\net6.0\SkullDugDungeon.Shared.AssemblyInfoInputs.cache
+D:\Dev\projects\foundrySite\SkullDugDungeon\SkullDugDungeon.Shared\obj\Debug\net6.0\SkullDugDungeon.Shared.AssemblyInfo.cs
+D:\Dev\projects\foundrySite\SkullDugDungeon\SkullDugDungeon.Shared\obj\Debug\net6.0\SkullDugDungeon.Shared.csproj.CoreCompileInputs.cache
+D:\Dev\projects\foundrySite\SkullDugDungeon\SkullDugDungeon.Shared\bin\Debug\net6.0\SkullDugDungeon.Shared.deps.json
+D:\Dev\projects\foundrySite\SkullDugDungeon\SkullDugDungeon.Shared\bin\Debug\net6.0\SkullDugDungeon.Shared.dll
+D:\Dev\projects\foundrySite\SkullDugDungeon\SkullDugDungeon.Shared\bin\Debug\net6.0\SkullDugDungeon.Shared.pdb
+D:\Dev\projects\foundrySite\SkullDugDungeon\SkullDugDungeon.Shared\obj\Debug\net6.0\SkullDugDungeon.Shared.dll
+D:\Dev\projects\foundrySite\SkullDugDungeon\SkullDugDungeon.Shared\obj\Debug\net6.0\refint\SkullDugDungeon.Shared.dll
+D:\Dev\projects\foundrySite\SkullDugDungeon\SkullDugDungeon.Shared\obj\Debug\net6.0\SkullDugDungeon.Shared.pdb
+D:\Dev\projects\foundrySite\SkullDugDungeon\SkullDugDungeon.Shared\obj\Debug\net6.0\ref\SkullDugDungeon.Shared.dll

@@ -1,0 +1,51 @@
+﻿@inject IJSRuntime JavaScript;
+
+<nav class="navBar">
+    <div class="navBar_navContainer">
+        <NavLink class="navContainer_navHeader" href="" Match="NavLinkMatch.All">Skull Dug Dungeon</NavLink>
+        <button class="navContainer_navToggle" type="button" aria-controls="navBarSupportedContent"
+                aria-expanded="@_isNavShown" aria-label="Toggle navigation" @onclick="ToggleNavMenu">
+            <span class="navToggle_toggleIcon"></span>
+        </button>
+        <div @ref="_navCollapseElement" class="navContainer_navLinks navContainer_navCollapse @NavShownClass" style="@NavCollapseHeightStyle" @onclick="ToggleNavMenu">
+            <ul class="navLinks_nav">
+                <li class="nav_navItem">
+                    <NavLink class="navItem_navLink" href="register">Register</NavLink>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+@code
+{
+    private IJSObjectReference? _jsModule;
+    private ElementReference _navCollapseElement;
+    private double _navCollapseMaxHeight;
+    private bool _isNavShown = false;
+
+    private string? NavCollapseShownHeightStyleText => _navCollapseMaxHeight == 0 ? null : $"max-height: {_navCollapseMaxHeight}px; transition: max-height .35s ease;";
+    private string? NavCollapseHeightStyleText => _navCollapseMaxHeight == 0 ? null : "transition: max-height .35s ease;";
+    private string? NavCollapseHeightStyle => /*_isNavShown ? NavCollapseShownHeightStyleText : NavCollapseHeightStyleText;*/ null;
+
+    private string? NavShownClass => _isNavShown ? "show" : null;
+
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+                _jsModule = await JavaScript.InvokeAsync<IJSObjectReference>("import", "./js/scripts.js");
+
+                _navCollapseMaxHeight = await _jsModule.InvokeAsync<double>("GetNavCollapseHeight", _navCollapseElement);
+
+        }
+    }
+
+    private void ToggleNavMenu()
+    {
+        _isNavShown = !_isNavShown;
+    }
+
+}
