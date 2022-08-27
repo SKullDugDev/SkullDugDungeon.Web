@@ -27,7 +27,7 @@
 
     private string? NavCollapseShownHeightStyleText => _navCollapseMaxHeight == 0 ? null : $"max-height: {_navCollapseMaxHeight}px; transition: max-height .35s ease;";
     private string? NavCollapseHeightStyleText => _navCollapseMaxHeight == 0 ? null : "transition: max-height .35s ease;";
-    private string? NavCollapseHeightStyle => /*_isNavShown ? NavCollapseShownHeightStyleText : NavCollapseHeightStyleText;*/ null;
+    private string? NavCollapseHeightStyle => _isNavShown ? NavCollapseShownHeightStyleText : NavCollapseHeightStyleText;
 
     private string? NavShownClass => _isNavShown ? "show" : null;
 

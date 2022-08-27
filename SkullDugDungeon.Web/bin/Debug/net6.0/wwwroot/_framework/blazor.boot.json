@@ -196,15 +196,15 @@
       "mscorlib.dll": "sha256-TYLzIm125RbnX9+RAPqJnwZhd6CnQpJcrjiMpJfZ720=",
       "netstandard.dll": "sha256-HhuK9zDkd1N7hODAEiNJ11VF8T54IgrM6hZfLHmHdqM=",
       "System.Private.CoreLib.dll": "sha256-dXaTqyg1PnXPiSwywpic1PVrd7P8Vb5tN0i0\/urdt3E=",
-      "SkullDugDungeon.Shared.dll": "sha256-Yt05za5lyOLdJrbCvLkOY89fBWwFWZ+UTwp5417ujMA=",
-      "SkullDugDungeon.Web.dll": "sha256-0rRYnoloT46VgVNhSnjR2wzlRgjnjsNtPv0XQ18+Zc8="
+      "SkullDugDungeon.Shared.dll": "sha256-MEkFeec9A1eNG5cM6uMxHsN4ri7PvGT1VDry4I77iLE=",
+      "SkullDugDungeon.Web.dll": "sha256-w+cAWCn+i7urKNMKHAvFKpJJc1G6XjFEVmUy4VXhF34="
     },
     "extensions": null,
     "lazyAssembly": null,
     "libraryInitializers": null,
     "pdb": {
-      "SkullDugDungeon.Shared.pdb": "sha256-m07QBxj\/AabS1U6x4h+WNEA5WaAnzi46BuNopgIzwK8=",
-      "SkullDugDungeon.Web.pdb": "sha256-DfzKjfzn849ogtPGaMCqG22qmRtUuMExuZ5YTkkfuCw="
+      "SkullDugDungeon.Shared.pdb": "sha256-7l6EiANhxZfrZt73T7IlwRa1ycR+LxSRsVrI2NGbNmA=",
+      "SkullDugDungeon.Web.pdb": "sha256-SYrcL4jf\/tP4boJ4xhOyMNM2qt+HI\/5ZY6kwgSJ3qGI="
     },
     "runtime": {
       "dotnet.6.0.8.s15f6cmf64.js": "sha256-WT60vnXnQtCNURE40qo+XSL1o4iYFvABy0NVaFhm7MI=",

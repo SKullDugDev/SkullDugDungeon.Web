@@ -1,5 +1,6 @@
 ﻿@page "/Register"
 @using SkullDugDungeon.Shared.Domain
+@using SkullDugDungeon.Shared.Enums
 @using SkullDugDungeon.Shared.Helpers
 
 <PageTitle>Registration</PageTitle>
@@ -11,88 +12,97 @@
         <div class="formBlock_formRow">
             <div class="formRow_entryBlock">
                 <div class="entryBlock_formEntry">
-                    <InputText class="formEntry_formControl" @bind-Value="_registration.UserName" id="userNameInput" DisplayName="Username" placeholder=" "></InputText>
+                    <InputText class="formEntry_formControl" @bind-Value="_registration.UserName" id="userNameInput" placeholder=" "></InputText>
                     <label class="formEntry_formLabel" for="userNameInput">Username</label>
                     <div class="formEntry_formNotch">
                         <div class="formNotch_leadingNotch"></div>
-                        <div class="formNotch_middleNotch formNotch_userNameNotch"></div>
+                        <div class="formNotch_middleNotch formNotch_middleNotch-userNameNotch"></div>
                         <div class="formNotch_trailingNotch"></div>
                     </div>
-
                 </div>
+
             </div>
-        </div>
-        <div class="formBlock_formRow">
             <div class="formRow_entryBlock">
                 <div class="entryBlock_formEntry">
                     <InputText class="formEntry_formControl" @bind-Value="_registration.Email" id="emailInput" placeholder=" "></InputText>
                     <label class="formEntry_formLabel" for="emailInput">Email</label>
                     <div class="formEntry_formNotch">
                         <div class="formNotch_leadingNotch"></div>
-                        <div class="formNotch_middleNotch formNotch_emailNotch"></div>
+                        <div class="formNotch_middleNotch formNotch_middleNotch-emailNotch"></div>
                         <div class="formNotch_trailingNotch"></div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="formBlock_formRow">
-            <div class="formRow_entryBlock">
-                <div class="entryBlock_formEntry formEntry_formControl formEntry_switchBlock">
+            <div class="formRow_entryBlock formRow_entryBlock-centeredFlex">
+                <div class="entryBlock_formEntry formEntry_formControl entryBlock_formEntry-switchBlock">
                     <label class="formEntry_switch">
                         <InputCheckbox class="switch_switchInput" @bind-Value="_pickAsDm" id="roleSwitch"/>
                         <span class="switch_switchState">
-                            <label class="switchState_switchOption switchState_playerSwitchOption" for="roleSwitch" hidden>Player</label>
-                            <label class="switchState_switchOption switchState_dmSwitchOption" for="roleSwitch">DM</label>
+                            <label class="switchState_switchOption switchState_switchOption-playerSwitchOption" for="roleSwitch" hidden>Player</label>
+                            <label class="switchState_switchOption switchState_switchOption-dmSwitchOption" for="roleSwitch">DM</label>
                         </span>
                         <div class="switch_handleBlock">
                             <span class="handleBlock_switchToggle"></span>
                         </div>
                         <div class="formEntry_formNotch">
                             <div class="formNotch_leadingNotch"></div>
-                            <div class="formNotch_middleNotch formNotch_roleNotch"></div>
+                            <div class="formNotch_middleNotch formNotch_middleNotch-roleNotch"></div>
                             <div class="formNotch_trailingNotch"></div>
                         </div>
                     </label>
-                    <label class="formEntry_formLabel formEntry_switchLabel" for="roleSwitch">Role</label>
+                    <label class="formEntry_formLabel formEntry_formLabel-switchLabel" for="roleSwitch">Role</label>
                 </div>
             </div>
             <div class="formRow_entryBlock">
-                <div class="entryBlock_formEntry formEntry_formControl formEntry_selectBlock">
-                    <InputSelect class="formEntry_selectControl" @bind-Value="_gamesSelected" id="gamesSelect" name="SelectedGames" DisplayName="SelectedGames">
-
-
+                <div class="entryBlock_formEntry formEntry_formControl entryBlock_formEntry-selectBlock">
+                    <InputSelect class="formEntry_selectControl" id="gamesSelect" size="2" @bind-Value="GamesSelected">
 
                         @foreach (var system in _gameSystems)
                         {
-                            @* by default no option should be disabled so we set the field to start off as false and allow it to be changed. *@
 
-                            _selectOptionDisabled = false;
+                            @*  represents whether a _selectOption should be disabled because it was selected already for the opposing role.
+                                    by default no option should be disabled so we set the field to start off as false and allow it to be changed. *@
 
-                            @*see if there exists an already selected game with the same GameSystem
-                             if not, _selectedGame will be null*@
+                            var selectOptionDisabled = false;
 
-                            _selectedGame = _gamesSelected.FirstOrDefault(selectedGame => selectedGame.GameSystem == system);
+                            Console.WriteLine(_pickAsDm);
 
-                            @*if such a selection exists and it uses a different _pickAsDm value than what we are currently using, disable it as a selection;
-                              otherwise, leave it as not disabled and carry on.*@
+                            @*  represents an <option> for the gamesSelect drop-down
+                                    sets the current selection option using the system taken from _gameSystems and the current _pickAsDm value*@
 
-                            if (_selectedGame is not null && _selectedGame.IsDungeonMaster != _pickAsDm) _selectOptionDisabled = true;
+                            var selectOption = new SelectedGame(system, _pickAsDm);
+
+                            var alternateOptionSelected = false;
+
+                            @*  represents a game that has already been selected and can thus be found in _gamesSelected;
+                                    if false, game wasn't found in _gamesSelected and thus no such game has already been selected. *@
+
+                            var optionSelected = _gamesSelected.Any(selectedGame => selectedGame == selectOption.GameCode);
+
+                            @*if the current option is not already selected, see if the alternate option made with an opposing _pickAsDm is*@
+
+                            if (!optionSelected) alternateOptionSelected = _gamesSelected.Any(selectedGame => selectedGame == new SelectedGame(system, !_pickAsDm).GameCode);
 
 
-                            @*sets the current selection option using the system taken from _gameSystems and the current _pickAsDm value*@
-                            _selectOption = new SelectedGame(system, _pickAsDm);
+                            @*  if the alternate option is selected, disable this option*@
+
+                            @*if (_selectedGame is not null && _selectedGame.IsDungeonMaster != _pickAsDm) _selectOptionDisabled = true;*@
+
+                            if (alternateOptionSelected) selectOptionDisabled = true;
 
 
-                            <option class="selectControl_selectOptions" value="@_selectOption" disabled="@_selectOptionDisabled"></option>
+                            <option class="selectControl_selectOptions" value="@selectOption.GameCode" checked="@optionSelected" disabled="@selectOptionDisabled">@selectOption.GameSystem.Alias</option>
                         }
 
 
                     </InputSelect>
 
-                    <label class="formEntry_formLabel formEntry_selectLabel" for="gamesSelect">Game</label>
+                    <label class="formEntry_formLabel formEntry_formLabel-selectLabel" for="gamesSelect">Game</label>
                     <div class="formEntry_formNotch">
                         <div class="formNotch_leadingNotch"></div>
-                        <div class="formNotch_middleNotch formNotch_gameNotch"></div>
+                        <div class="formNotch_middleNotch formNotch_middleNotch-gameNotch"></div>
                         <div class="formNotch_trailingNotch"></div>
                     </div>
                 </div>
@@ -115,39 +125,68 @@
 
 
     // represents the list of valid games
-    private readonly List<GameSystem> _gameSystems = GameSystemHelper.GetGameSystems();
+    private readonly IList<GameSystem> _gameSystems = GameSystemHelper.GetGameSystems();
 
     // represents the registration form Model the form will be bound to
     private readonly RegistrationForm _registration = new();
 
 
-    // represents an <option> for the gamesSelect drop-down; initialized to avoid nullability.
-    // default instance: GameSystem = None & IsDungeonMaster = false; is placeholder and not used.
-    // gamesSelect instance: IsDungeonMaster = _pickAsDM & GameSystem = one member from _gameSystems.
+    //private SelectedGame _selectOption = new();
 
-    private SelectedGame _selectOption = new();
+    // represents an array of games selected; initialized w/ none
+    // binding to gamesSelect as array allows multiple selections; each selection a bit value;
 
-    // represents an array of games selected; initialized w/ default _selectOption to avoid nullability.
-    // binding to gamesSelect as array allows multiple selections; each selection is a _selectOption element;
-    // if _gamesSelected is an array composed of just the default _selectOption, then no games have been selected.
+    private readonly IList<int> _gamesSelectedList = new List<int>();
+    private int[] _gamesSelected = { };
 
 
-    private SelectedGame[] _gamesSelected = { new() };
-
-    // represents a game that has already been selected and can thus be found in _gamesSelected;
-    // nullable; if null, game wasn't found in _gamesSelected and thus no such game has already been selected.
-
-    private SelectedGame? _selectedGame;
+    //private int? _selectedGame;
 
 
     // represents whether games are currently being selected as a Player or as a DM.
     private bool _pickAsDm;
 
+    private int[] GamesSelected
+    {
+        get => _gamesSelected;
 
-    // represents whether a _selectOption should be disabled because it was selected already for the opposing role.
-
-    private bool _selectOptionDisabled;
+        set => _gamesSelected = HandleSelectionChange(value);
 
 
+    }
+
+    //private bool _selectOptionDisabled;
+
+    private int[] HandleSelectionChange(IEnumerable<int> values)
+    {
+        values = (int[])values;
+
+        if (!values.Any())
+        {
+            var deselectValue = _gamesSelectedList.LastOrDefault(selectedGame => ((GameSystems)selectedGame).HasFlag(GameSystems.DungeonMaster) == _pickAsDm);
+
+            if (deselectValue is not  0) _gamesSelectedList.Remove(deselectValue);
+        }
+
+        foreach (var value in values)
+        {
+
+
+            if (!_gamesSelectedList.Any() || !_gamesSelectedList.Contains(value))
+            {
+                _gamesSelectedList.Add(value);
+            }
+            else
+            {
+                if (values.Count() > 1) continue;
+                ;
+                _gamesSelectedList.Remove(value);
+            }
+        }
+
+        return _gamesSelectedList.ToArray();
+    }
+
+ 
 
 }

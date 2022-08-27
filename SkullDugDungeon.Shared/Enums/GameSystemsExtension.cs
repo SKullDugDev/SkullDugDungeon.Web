@@ -4,8 +4,6 @@
     {
         public static string ToDisplayString(this GameSystems gameSystems) => gameSystems switch
         {
-            GameSystems.None => "None",
-
             // D & D
             //GameSystems.Edition1 => "1E",
             //GameSystems.Edition2 => "2E",
@@ -18,7 +16,7 @@
             GameSystems.Pf2 => "PF2",
 
             // Default
-            _ => string.Join(", ", Enum.GetValues<GameSystems>().Where(v => gameSystems.HasFlag(v)).Select(ToDisplayString))
+            _ => string.Join(", ", Enum.GetValues<GameSystems>().Where(v => gameSystems.HasFlag(v) && v != GameSystems.None && v != GameSystems.DungeonMaster).Select(ToDisplayString))
         };
     }
 }

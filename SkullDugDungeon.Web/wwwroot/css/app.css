@@ -59,10 +59,14 @@ body {
 }
 
 /*this being a column might have screwed the growing up and down*/
+
 main {
+    align-items: center;
     display: flex;
     flex: auto;
-    flex-flow: column;
+    /*flex-flow: column;*/
+    flex-flow: row nowrap;
+    justify-content: center;
     margin: .875em;
     /*might regret below*/
     /*    width: 100%;
@@ -116,8 +120,10 @@ footer {
     justify-content: space-between;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 7.5px;
-    padding-right: 7.5px;
+    /*padding-left: 7.5px;
+    padding-right: 7.5px;*/
+    padding-left: .75rem;
+    padding-right: .75rem;
     width: 100%;
 }
 
@@ -261,15 +267,15 @@ border-style: none;*/
     background-position: 0 130px;
     background-repeat: repeat;
     border-radius: .25em;
-    /*box-shadow: 0 0 20px #000;*/
-    box-shadow: rgba(60, 64, 67, 0.3) 0 1px 2px 0, rgba(60, 64, 67, 0.15) 0 2px 6px 2px;
+    box-shadow: 0 0 20px #000;
+    /*box-shadow: rgba(60, 64, 67, 0.3) 0 1px 2px 0, rgba(60, 64, 67, 0.15) 0 2px 6px 2px;*/
     display: flex;
     flex: auto;
     flex-direction: column;
-    height: 100%;
     /*justify-content: space-evenly;*/
     justify-content: space-between;
     padding: .5em;
+    row-gap: 6.5rem;
     width: 100%;
 }
 
@@ -430,10 +436,16 @@ select option {
     text-align: center;
 }
 
-.formblock {
+.formBlock {
     /*check on this*/
-    padding: min(max(0, -1.1094674556213018rem + 11.834319526627219vw), 1.25rem);
-    padding: clamp(0, -1.1094674556213018rem + 11.834319526627219vw, 1.25rem);
+    padding: min(max(0rem, -1.1094674556213018rem + 11.834319526627219vw), 1.25rem);
+    padding: clamp(0rem, -1.1094674556213018rem + 11.834319526627219vw, 1.25rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 100%;
+    width: 100%;
+    row-gap: 3rem;
 }
 
 .formBlock_headerBlock {
@@ -458,7 +470,7 @@ select option {
 
 .formBlock_formRow {
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: row nowrap;
     margin: 0 auto;
     width: 100%;
 }
@@ -470,9 +482,14 @@ select option {
     }
 
 .formRow_entryBlock {
-    flex: none;
+    flex: auto;
     padding-bottom: 1.5rem;
     width: 100%;
+}
+
+.formRow_entryBlock-centeredFlex {
+    display: flex;
+    align-items: center;
 }
 
 .entryBlock_formEntry {
@@ -505,7 +522,8 @@ select option {
             .formEntry_formControl:not(:placeholder-shown) ~ .formEntry_formLabel {
                 max-width: 100%;
                 /*transform: translateY(-1rem) translateY(.1rem) scale(.8)*/
-                transform: translateY(-1rem) translateY(.05rem) scale(.8);
+                /*transform: translateY(-1rem) translateY(.05rem) scale(.8);*/
+                transform: translateY(-.95rem) scale(.8);
                 width: fit-content;
             }
 
@@ -550,21 +568,21 @@ select option {
             }
 
         .entryBlock_formEntry .formEntry_formControl ~ .formEntry_formLabel {
-            bottom: 0;
-            color: rgba(0, 0, 0, .6);
-            left: 0;
-            line-height: 2.2;
-            margin-bottom: 0;
-            overflow: hidden;
-            padding: .33rem .75rem;
-            pointer-events: none;
             position: absolute;
-            right: 0;
-            text-overflow: ellipsis;
             top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
             transform-origin: 0 0;
             transition: all .2s ease-out;
+            margin-bottom: 0;
+            padding: .33rem .75rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            /*line-height: 2.2;*/
             white-space: nowrap;
+            color: rgba(0, 0, 0, .6);
+            pointer-events: none;
         }
 
         .entryBlock_formEntry .formEntry_formControl:not(.placeholder-active)::placeholder,
@@ -586,7 +604,8 @@ select option {
 
             .entryBlock_formEntry .formEntry_formControl ~ .formEntry_formNotch div {
                 background: transparent;
-                border: 0.0625rem solid #bdbdbd;
+                /*border: 0.0625rem solid #bdbdbd;*/
+                border: 0.1rem solid #bdbdbd;
                 box-sizing: border-box;
                 pointer-events: none;
             }
@@ -623,6 +642,7 @@ select option {
     font-size: 1rem;
     height: 2.5rem;
     line-height: 1.6;
+    width: 100%;
 }
 
     .formEntry_formControl:focus {
@@ -630,42 +650,46 @@ select option {
         outline: none;
     }
 
-    .formEntry_formControl.formEntry_selectBlock {
+    .formEntry_formControl.entryBlock_formEntry-selectBlock {
         border: none;
         padding: 0;
     }
 
 .formNotch_leadingNotch {
-    width: 0.563rem;
+    /*width: 0.563rem;*/
+    width: .6rem;
 }
 
-.formNotch_userNameNotch {
-    width: 3.813rem;
+.formNotch_middleNotch-userNameNotch {
+    width: 6rem;
 }
 
-.formNotch_emailNotch {
-    width: 2.25rem;
+.formNotch_middleNotch-emailNotch {
+    width: 3.5rem;
 }
 
-.formNotch_roleNotch {
-    width: 1.7rem;
+.formNotch_middleNotch-roleNotch {
+    /*width: 1.7rem;*/
+    width: 2.6rem;
 }
 
-.formNotch_gameNotch {
-    width: 2.25rem;
+.formNotch_middleNotch-gameNotch {
+    width: 3.6rem;
 }
 
-.formEntry_switchBlock {
+.entryBlock_formEntry-switchBlock {
     /*align-content: center;*/
     /*align-items: center;*/
     background: transparent;
     border: 0;
-    border-radius: 1.25rem;
+    /*border-radius: 1.25rem;*/
+    border-radius: 2rem;
     /*border-radius: 1.1115rem;*/
     color: #616161;
     display: flex;
     justify-content: center;
     padding: 0;
+    height: 3.5rem;
 }
 
 .formEntry_switch {
@@ -684,7 +708,8 @@ select option {
     background: linear-gradient(to bottom, #eeeeee, #fafafa 1.563rem);*/
     background-image: -webkit-linear-gradient(top, #eeeeee, #DADBDD 1.563rem);
     background-image: linear-gradient(#eeeeee, #DADBDD 1.563rem);
-    border-radius: 1.125rem;
+    /*border-radius: 1.125rem;*/
+    border-radius: 2rem;
     box-shadow: inset 0 -0.0625rem 0.0625rem rgba(0, 0, 0, 0.05), inset 0 0.0625rem 0.0625rem rgba(0, 0, 0, 0.05);
     box-sizing: content-box;
     cursor: pointer;
@@ -697,12 +722,15 @@ select option {
     font-size: clamp(0.65rem, 0.54rem + 0.5499999999999999vw, 1.2rem);
     line-height: min(max(1.125rem, 0.25rem + 7ex), 2.1875rem);
     line-height: clamp(1.125rem, 0.25rem + 7ex, 2.1875rem);*/
-    font-size: 1rem;
+    /*font-size: 1rem;*/
+    font-size: 1.6rem;
     height: 80%;
-    line-height: 2.3;
+    /*line-height: 2.25;*/
+    line-height: 2.1;
     /*padding: 0;*/
     /*padding: 0.33rem;*/
-    padding: 0.1875rem;
+    /*padding: 0.1875rem;*/
+    padding: .4rem;
     position: relative;
     top: .0625rem;
     width: calc(100% - 0.5rem);
@@ -723,29 +751,31 @@ select option {
         box-shadow: inset 0 0.0625rem 0.125rem rgba(0, 0, 0, 0.15), inset 0 0 0.188rem rgba(0, 0, 0, 0.2);
     }
 
-        .switch_switchInput:checked ~ .switch_switchState .switchState_playerSwitchOption {
+        .switch_switchInput:checked ~ .switch_switchState .switchState_switchOption-playerSwitchOption {
             /* figure out how to remove important */
             display: none !important;
         }
 
-        .switch_switchInput:checked ~ .switch_switchState .switchState_switchOption.switchState_playerSwitchOption {
+        .switch_switchInput:checked ~ .switch_switchState .switchState_switchOption.switchState_switchOption-playerSwitchOption {
             display: none;
         }
 
-        .switch_switchInput:checked ~ .switch_switchState .switchState_dmSwitchOption {
+        .switch_switchInput:checked ~ .switch_switchState .switchState_switchOption-dmSwitchOption {
             display: inherit;
         }
 
     .switch_switchInput:checked ~ .switch_handleBlock .handleBlock_switchToggle {
         box-shadow: -0.0625rem 0.0625rem 0.313rem rgba(0, 0, 0, 0.2);
         left: auto;
-        right: 0.125rem;
+        /*right: 0.125rem;*/
+        right: .3rem;
     }
 
     .switch_switchInput ~ .formEntry_formNotch {
         display: flex;
         /*max-width: 100%;*/
-        height: 2.5rem;
+        /*height: 2.5rem;*/
+        height: 3.7rem;
         left: -.0625rem;
         max-width: calc(100% + 0.125rem);
         pointer-events: none;
@@ -758,21 +788,26 @@ select option {
 
         .switch_switchInput ~ .formEntry_formNotch div {
             background: transparent;
-            border: 0.0625rem solid #bdbdbd;
+            /*border: 0.0625rem solid #bdbdbd;*/
+            border: .125rem solid #bdbdbd;
             border-right-color: rgb(189, 189, 189);
             border-right-style: solid;
-            border-right-width: 0.0625rem;
+            /*border-right-width: 0.0625rem;*/
+            border-right-width: .125rem;
             box-sizing: border-box;
             pointer-events: none;
         }
 
         .switch_switchInput ~ .formEntry_formNotch .formNotch_leadingNotch {
             /*margin: 0.3rem;*/
-            border-bottom-left-radius: 1.25rem;
+            /*border-bottom-left-radius: 1.25rem;*/
+            border-bottom-left-radius: 2rem;
             border-right: none;
-            border-top-left-radius: 1.25rem;
+            /*border-top-left-radius: 1.25rem;*/
+            border-top-left-radius: 2rem;
             transition: border-color 0.2s linear;
-            width: 1.3rem;
+            /*width: 1.3rem;*/
+            width: 2rem;
         }
 
         .switch_switchInput ~ .formEntry_formNotch .formNotch_middleNotch {
@@ -780,7 +815,7 @@ select option {
             border-right: none;
             border-top: none;
             flex: 0 0 auto;
-            height: 100%;
+            /*height: 100%;*/
             max-width: calc(100% - 1rem);
             transition: border-color 0.2s linear;
             /*margin: -0.3rem;*/
@@ -788,9 +823,11 @@ select option {
 
         .switch_switchInput ~ .formEntry_formNotch .formNotch_trailingNotch {
             /*margin: 0.3rem;*/
-            border-bottom-right-radius: 1.25rem;
+            /*border-bottom-right-radius: 1.25rem;*/
+            border-bottom-right-radius: 2rem;
             border-left: none;
-            border-top-right-radius: 1.25rem;
+            /*border-top-right-radius: 1.25rem;*/
+            border-top-right-radius: 2rem;
             flex-grow: 1;
             transition: border-color 0.2s linear;
         }
@@ -841,7 +878,7 @@ select option {
 
 /*consider adding the block to the name*/
 
-.switchState_playerSwitchOption {
+.switchState_switchOption-playerSwitchOption {
     color: #0A0A0A;
     /*get rid of the important*/
     display: inherit !important;
@@ -851,11 +888,11 @@ select option {
     text-shadow: 0.02rem 0.04rem rgba(136, 136, 136, 0.5);
 }
 
-.switchState_switchOption.switchState_playerSwitchOption {
+.switchState_switchOption.switchState_switchOption-playerSwitchOption {
     display: inherit;
 }
 
-.switchState_dmSwitchOption {
+.switchState_switchOption-dmSwitchOption {
     color: #fffafa;
     display: none;
     margin-left: 1.25rem;
@@ -888,32 +925,38 @@ select option {
     background-image: -webkit-linear-gradient(top, #ffffff 40%, #f0f0f0);
     border-radius: 100%;
     box-shadow: 0.0625rem 0.0625rem 0.313rem rgba(0, 0, 0, 0.2);
-    height: 80%;
-    left: 0.125rem;
+    /*height: 80%;*/
+    height: 2.6rem;
+    /*left: 0.125rem;*/
+    left: .4rem;
     position: absolute;
     transition: All 250ms ease;
-    width: 1.6rem;
+    /*width: 1.6rem;*/
+    width: 2.6rem;
 }
 
     .handleBlock_switchToggle::before {
         background: linear-gradient(to bottom, #eeeeee, #ffffff);
         background-image: linear-gradient(rgb(238, 238, 238), rgb(255, 255, 255));
         background-image: -webkit-linear-gradient(top, #eeeeee, #ffffff);
-        border-radius: 0.375rem;
+        /*border-radius: 0.375rem;*/
+        border-radius: 2rem;
         box-shadow: inset 0 0.0625rem rgba(0, 0, 0, 0.02);
         content: "";
         /*margin: -0.33rem 0 0 -0.33rem;*/
         /*height: 50.1%;
         width: 0.5745rem;*/
-        height: 50%;
+        /*height: 50%;*/
+        height: 1.3rem;
         left: 50%;
         position: absolute;
         top: 50%;
         transform: translate(-50%, -50%);
-        width: 0.8rem;
+        /*width: 0.8rem;*/
+        width: 1.3rem;
     }
 
-.formEntry_switchLabel {
+.formEntry_formLabel-switchLabel {
     bottom: 0;
     color: #1266f1;
     height: fit-content;
@@ -927,7 +970,10 @@ select option {
     right: 0;
     top: 0;
     /*transform: translateX(1.3rem) translateY(-1rem) translateY(0.36rem) scale(0.8);*/
-    transform: translateX(1.3rem) translateY(-1rem) translateY(0.28rem) scale(0.8);
+    /*transform: translateX(1.3rem) translateY(-1rem) translateY(0.28rem) scale(0.8);*/
+    /*transform: translateX(1.3rem) translateY(-.72rem) scale(.8);*/
+    /*transform: translateX(1.8rem) translateY(-.9rem) scale(.8);*/
+    transform: translateX(1.8rem) translateY(-.85rem) scale(.8);
     transform-origin: 0 0;
     /*might need to make this line up with the handle*/
     transition: all 0.2s ease-out;
@@ -935,14 +981,17 @@ select option {
     white-space: nowrap;
     /*transform: translateX(1.4rem) translateY(-1rem) translateY(0.32rem) scale(0.8)*/
     width: fit-content;
+    font-size: 1.6rem;
 }
 
-.formEntry_selectBlock {
+.entryBlock_formEntry-selectBlock {
     background: #eee5ce;
     color: #616161;
     font-family: bookmania, serif;
     font-style: normal;
     font-weight: 400;
+    height: 5rem;
+    -webkit-appearance: none;
 }
 
 .formEntry_selectControl {
@@ -956,11 +1005,12 @@ select option {
     height: 100%;
     line-height: 2.3;
     outline: 0;
-    padding: 0.33rem 0.75rem;
+    /*padding: 0.33rem 0.75rem;*/
     text-align: center;
     text-transform: none;
     width: 100%;
     word-wrap: normal;
+    /*padding-top: .6rem;*/
 }
 
     .formEntry_selectControl:focus ~ .formEntry_formNotch div {
@@ -970,9 +1020,21 @@ select option {
 
 .selectControl_selectOptions {
     background: #eee5ce;
+    height: 2.5rem;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    font-size: 1.5rem;
+    padding-top: .5rem;
+    -webkit-appearance: none;
 }
 
-.formEntry_selectLabel {
+    .selectControl_selectOptions:checked {
+        /*background: #6CD4FF;*/
+        background: #A3D1D8;
+    }
+
+.formEntry_formLabel-selectLabel {
     bottom: 0;
     color: #1266f1;
     left: 0;
@@ -984,13 +1046,15 @@ select option {
     position: absolute;
     right: 0;
     top: 0;
-    transform: translateY(-1rem) translateY(0.1rem) scale(0.8);
+    transform: translateY(-1rem) scale(0.8);
     transform-origin: 0 0;
     transition: all 0.2s ease-out;
     white-space: nowrap;
+    font-size: 1.6rem;
+    line-height: 1.5;
 }
 
-    .formEntry_selectLabel ~ .formEntry_formNotch {
+    .formEntry_formLabel-selectLabel ~ .formEntry_formNotch {
         display: flex;
         height: 100%;
         left: 0;
@@ -1002,17 +1066,19 @@ select option {
         width: 100%;
     }
 
-        .formEntry_selectLabel ~ .formEntry_formNotch div {
+        .formEntry_formLabel-selectLabel ~ .formEntry_formNotch div {
             background: transparent;
-            border: 0.0625rem solid #bdbdbd;
+            /*border: 0.0625rem solid #bdbdbd;*/
+            border: .125rem solid #bdbdbd;
             border-right-color: rgb(189, 189, 189);
             border-right-style: solid;
-            border-right-width: 0.0625rem;
+            /*border-right-width: 0.0625rem;*/
+            border-right-width: 0.125rem;
             box-sizing: border-box;
             pointer-events: none;
         }
 
-        .formEntry_selectLabel ~ .formEntry_formNotch .formNotch_leadingNotch {
+        .formEntry_formLabel-selectLabel ~ .formEntry_formNotch .formNotch_leadingNotch {
             border-radius: 0.25rem 0 0 0.25rem;
             border-right: none;
             border-right: none;
@@ -1020,7 +1086,7 @@ select option {
             transition: all 0.2s linear;
         }
 
-        .formEntry_selectLabel ~ .formEntry_formNotch .formNotch_middleNotch {
+        .formEntry_formLabel-selectLabel ~ .formEntry_formNotch .formNotch_middleNotch {
             border-left: none;
             border-right: none;
             border-top: none;
@@ -1030,7 +1096,7 @@ select option {
             transition: all 0.2s linear;
         }
 
-        .formEntry_selectLabel ~ .formEntry_formNotch .formNotch_trailingNotch {
+        .formEntry_formLabel-selectLabel ~ .formEntry_formNotch .formNotch_trailingNotch {
             border-left: none;
             border-radius: 0 0.25rem 0.25rem 0;
             flex-grow: 1;
@@ -1085,9 +1151,9 @@ a, .btn-link {
     color: #fff;
 }
 
-.valid.modified:not([type=checkbox]) {
+/*.valid.modified:not([type=checkbox]) {
     outline: 1px solid #26b050;
-}
+}*/
 
 .invalid {
     outline: 1px solid red;
